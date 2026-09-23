@@ -1,0 +1,245 @@
+:root {
+    --primary-color: #2563eb;
+    --income-color: #10b981;
+    --expense-color: #ef4444;
+    --background-color: #f8fafc;
+    --card-background: #ffffff;
+    --text-main: #1e293b;
+    --text-muted: #64748b;
+    --border-radius: 12px;
+    --box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Tajawal', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-main);
+    padding: 20px;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+header h1 {
+    color: var(--primary-color);
+    font-size: 2.5rem;
+    margin-bottom: 5px;
+}
+
+header p {
+    color: var(--text-muted);
+}
+
+/* لوحة العدادات المالية */
+.budget-summary {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.balance-card {
+    background: linear-gradient(135deg, #1e40af, #2563eb);
+    color: white;
+    padding: 25px;
+    border-radius: var(--border-radius);
+    text-align: center;
+    box-shadow: var(--box-shadow);
+}
+
+.balance-card h3 {
+    font-weight: 500;
+    opacity: 0.9;
+    font-size: 1.1rem;
+}
+
+.balance-card h1 {
+    font-size: 2.8rem;
+    margin-top: 5px;
+}
+
+.income-expense-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.money-card {
+    background-color: var(--card-background);
+    padding: 20px;
+    border-radius: var(--border-radius);
+    text-align: center;
+    box-shadow: var(--box-shadow);
+    border-bottom: 4px solid transparent;
+}
+
+.money-card.income { border-bottom-color: var(--income-color); }
+.money-card.expense { border-bottom-color: var(--expense-color); }
+
+.money-card h4 {
+    color: var(--text-muted);
+    font-size: 1rem;
+    margin-bottom: 5px;
+}
+
+.money-card p {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+#money-plus { color: var(--income-color); }
+#money-minus { color: var(--expense-color); }
+
+/* تنظيم محتوى الصفحة الرئيسي */
+.main-content {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 25px;
+}
+
+.card {
+    background-color: var(--card-background);
+    padding: 25px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    margin-bottom: 25px;
+}
+
+.card h3 {
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+    color: var(--text-main);
+    border-bottom: 2px solid #f1f5f9;
+    padding-bottom: 10px;
+}
+
+/* النماذج والمدخلات */
+.form-control {
+    margin-bottom: 15px;
+}
+
+.form-control label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+.form-control input, .form-control select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.form-control input:focus, .form-control select:focus {
+    border-color: var(--primary-color);
+}
+
+.btn {
+    width: 100%;
+    padding: 12px;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btn:hover { background-color: #1d4ed8; }
+
+/* سجل العمليات */
+.list {
+    list-style-type: none;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.list li {
+    background-color: #f8fafc;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px;
+    margin-bottom: 10px;
+    border-radius: 6px;
+    position: relative;
+    border-right: 5px solid #cbd5e1;
+    transition: all 0.2s;
+}
+
+.list li.plus { border-right-color: var(--income-color); }
+.list li.minus { border-right-color: var(--expense-color); }
+
+.delete-btn {
+    background-color: var(--expense-color);
+    border: none;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+
+.list li:hover .delete-btn {
+    opacity: 1;
+}
+
+/* قسم الرسم البياني */
+.chart-container {
+    position: relative;
+    width: 100%;
+    height: 300px;
+}
+
+/* استعلامات الوسائط للشاشات الصغيرة الهواتف */
+@media (max-width: 768px) {
+    .main-content {
+        grid-template-columns: 1fr;
+    }
+    .income-expense-row {
+        grid-template-columns: 1fr;
+    }
+}
+/* تنسيقات الوضع الداكن الثورية */
+body.dark-theme {
+    --background-color: #0f172a;
+    --card-background: #1e293b;
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+    --box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.5);
+}
+
+body.dark-theme .list li {
+    background-color: #1e293b;
+    border-right-color: #475569;
+}
+
+body.dark-theme .form-control input, body.dark-theme .form-control select {
+    background-color: #1e293b;
+    border-color: #475569;
+    color: #f8fafc;
+}

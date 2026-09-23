@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منصة تتبع المصاريف الذكية</title>
+    <!-- خط جوجول لتنسيق النصوص -->
+    <link href="https://googleapis.com" rel="stylesheet">
+    <!-- مكتبة الأيقونات FontAwesome -->
+    <link rel="stylesheet" href="https://cloudflare.com">
+    <!-- ملف التنسيق الخاص بنا -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1><i class="fa-solid fa-wallet"></i> متعقب المصاريف الذكي</h1>
+            <button id="theme-toggle" style="background: none; border: 2px solid var(--primary-color); color: var(--primary-color); padding: 8px 16px; border-radius: 20px; cursor: pointer; font-family: inherit; font-weight: bold; margin-top: 10px; transition: all 0.3s;">
+                <i class="fa-solid fa-moon"></i> الوضع الداكن
+            </button>
+            <p>إدارة ميزانيتك بكل سهولة واحترافية</p>
+        </header>
+
+        <!-- قسم لوحة العدادات الماليّة -->
+        <div class="budget-summary">
+            <div class="balance-card">
+                <h3>الميزانية الحالية</h3>
+                <h1 id="balance">0.00 ج.م</h1>
+            </div>
+            <div class="income-expense-row">
+                <div class="money-card income">
+                    <h4><i class="fa-solid fa-arrow-trend-up"></i> إجمالي الدخل</h4>
+                    <p id="money-plus">+0.00 ج.م</p>
+                </div>
+                <div class="money-card expense">
+                    <h4><i class="fa-solid fa-arrow-trend-down"></i> إجمالي المصاريف</h4>
+                    <p id="money-minus">-0.00 ج.م</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- قسم الرسم البياني وتفاصيل المعاملات -->
+        <div class="main-content">
+            
+            <!-- الجزء الأيمن: إضافة معاملة وقائمة السجل -->
+            <div class="input-section">
+                <div class="card">
+                    <h3><i class="fa-solid fa-plus-circle"></i> إضافة معاملة جديدة</h3>
+                    <form id="form">
+                        <div class="form-control">
+                            <label for="text">البيان (الوصف)</label>
+                            <input type="text" id="text" placeholder="مثال: راتب، تسوق، إنترنت..." required />
+                        </div>
+                        <div class="form-control">
+                            <label for="amount">المبلغ (موجب للدخل / سالب للمصاريف)</label>
+                            <input type="number" id="amount" placeholder="مثال: 5000 أو -200" required />
+                        </div>
+                        <div class="form-control">
+                            <label for="category">الفئة</label>
+                            <select id="category">
+                                <option value="income">دخل أساسي / إضافي</option>
+                                <option value="food">طعام ومشتريات</option>
+                                <option value="bills">فواتير وخدمات</option>
+                                <option value="transport">مواصلات وتنقّل</option>
+                                <option value="entertainment">ترفيه وتسوّق</option>
+                            </select>
+                        </div>
+                        <button class="btn">إضافة المعاملة</button>
+                    </form>
+                </div>
+
+                <div class="card">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; border-bottom: 2px solid #f1f5f9; padding-bottom: 10px;">
+                        <h3 style="margin-bottom: 0; border-bottom: none; padding-bottom: 0;"><i class="fa-solid fa-history"></i> سجل العمليات الأخيرة</h3>
+                        <button id="clear-btn" style="background-color: #ef4444; color: white; border: none; padding: 6px 12px; border-radius: 6px; cursor: pointer; font-family: inherit; font-size: 0.85rem; font-weight: bold;"><i class="fa-solid fa-trash-can"></i> مسح الكل</button>
+                    </div>
+                    <ul id="list" class="list">
+                        <!-- سيتم إضافة العناصر هنا ديناميكياً بواسطة JavaScript -->
+                    </ul>
+                </div>
+            </div>
+
+            <!-- الجزء الأيسر: التحليل البياني للبيانات -->
+            <div class="chart-section">
+                <div class="card chart-card">
+                    <h3><i class="fa-solid fa-chart-pie"></i> تحليل المصاريف بيانيّاً</h3>
+                    <div class="chart-container">
+                        <canvas id="expenseChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- مكتبة الرسوم البيانية Chart.js -->
+    <script src="chart.js"></script>
+    <!-- ملف البرمجة الخاص بنا -->
+    <script src="app.js"></script>
+</body>
+</html>
